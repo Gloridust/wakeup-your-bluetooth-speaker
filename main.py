@@ -20,7 +20,8 @@ def generate_white_noise(sample_rate, duration):
 def play_audio(samples, sample_rate):
     pygame.mixer.pre_init(sample_rate, -16, 2)  # 使用立体声
     pygame.init()
-    sound = pygame.sndarray.make_sound(samples.astype(np.float32))
+    samples_contiguous = np.ascontiguousarray(samples, dtype=np.float32)  # 转换为 C 连续的数组
+    sound = pygame.sndarray.make_sound(samples_contiguous)
     sound.play()
 
 # 主程序
