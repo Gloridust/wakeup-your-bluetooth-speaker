@@ -13,7 +13,7 @@ def user_interaction():
     print(">当前参数定义如下：")
     print(f">采样率：{sample_rate}")
     print(f">音频时长：{duration}")
-    print(f">总间隔时长（分钟）：{total_time_sleep / 60}\r")
+    print(f">总间隔时长（分钟）：{total_time_sleep / 60}")
     print(f">音量调节：{sound_volume:.10f}".rstrip('0').rstrip('.'))
 
     try:
@@ -43,12 +43,18 @@ def play_audio(samples, sample_rate):
 
 # 主程序
 def main():
+    num_run = 0
     new_total_time_sleep = user_interaction()
+    print(">开始运行")
     while True:
         # 生成并播放白噪声
         noise = generate_white_noise(sample_rate, duration)
         play_audio(noise, sample_rate)
         
+        # 状态显示
+        num_run += 1
+        print(f"\r>已唤醒蓝牙音响{num_run}次，正在等待下一次唤醒...",end="")
+
         # 延迟等待
         time.sleep(new_total_time_sleep)
 
