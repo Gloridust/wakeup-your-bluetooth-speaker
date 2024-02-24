@@ -1,7 +1,6 @@
 import numpy as np
 import sounddevice as sd
 import time
-from tqdm import tqdm
 
 # 定义
 sample_rate = 1000  # 采样率
@@ -45,18 +44,13 @@ def play_audio(samples, sample_rate):
 # 主程序
 def main():
     new_total_time_sleep = user_interaction()
-    with tqdm(total=new_total_time_sleep) as pbar:
-        while True:
-            # 生成并播放白噪声
-            noise = generate_white_noise(sample_rate, duration)
-            play_audio(noise, sample_rate)
-            
-            # 更新进度条
-            for _ in range(new_total_time_sleep // duration):
-                time.sleep(duration)
-                pbar.update(duration)
-                if pbar.n >= new_total_time_sleep:
-                    break
+    while True:
+        # 生成并播放白噪声
+        noise = generate_white_noise(sample_rate, duration)
+        play_audio(noise, sample_rate)
+        
+        # 延迟等待
+        time.sleep(new_total_time_sleep)
 
 if __name__ == "__main__":
     main()
