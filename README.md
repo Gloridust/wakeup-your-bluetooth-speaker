@@ -12,6 +12,8 @@
 pip install numpy sounddevice tqdm
 ```
 
+如果你想使用一键包，请前往[Release](https://github.com/Gloridust/wakeup-your-bluetooth-speaker/releases/).
+
 ## Release
 
 提示：集成包体积大、打开速度慢，建议有能力使用源码的用户下载 Python 源码包
