@@ -45,7 +45,7 @@ def play_audio(samples, sample_rate):
 def main():
     num_run = 0
     new_total_time_sleep = user_interaction()
-    print(">开始运行")
+    print("\n>开始运行")
     while True:
         # 生成并播放白噪声
         noise = generate_white_noise(sample_rate, duration)
