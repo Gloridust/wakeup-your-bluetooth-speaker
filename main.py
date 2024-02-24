@@ -14,11 +14,11 @@ def generate_white_noise(sample_rate, duration):
     num_samples = int(sample_rate * duration)
     samples = np.random.randn(num_samples)
     samples *= 0.3  # 调整音量，以避免过于刺耳
-    return samples
+    return np.array([samples, samples]).T  # 转换为二维数组
 
 # 播放音频
 def play_audio(samples, sample_rate):
-    pygame.mixer.pre_init(sample_rate, -16, 1, 1024)
+    pygame.mixer.pre_init(sample_rate, -16, 2)  # 使用立体声
     pygame.init()
     sound = pygame.sndarray.make_sound(samples.astype(np.float32))
     sound.play()
