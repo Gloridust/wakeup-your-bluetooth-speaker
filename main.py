@@ -14,7 +14,7 @@ def user_interaction():
     print(f">采样率：{sample_rate}")
     print(f">音频时长：{duration}")
     print(f">总间隔时长：{total_time_sleep}")
-    print(f">音量调节：{str(sound_volume)}")
+    print(f">音量调节：{sound_volume:.10f}".rstrip('0').rstrip('.'))
 
     try:
         user_input = input("\n>输入间隔分钟数，直接按下Enter 则使用默认值[5min]:")
