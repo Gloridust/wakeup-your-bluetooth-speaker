@@ -1,39 +1,29 @@
-import pygame
-import time
 import numpy as np
-
-# 初始化 pygame
-pygame.mixer.init()
+import sounddevice as sd
+import time
 
 # 定义采样率和音频时长
-sample_rate = 10 # 采样率
-duration = 2  # 音频时长
+sample_rate = 44100
+duration = 1  # 1 秒钟的音频
 
 # 生成白噪声音频
 def generate_white_noise(sample_rate, duration):
     num_samples = int(sample_rate * duration)
     samples = np.random.randn(num_samples)
     samples *= 0.3  # 调整音量，以避免过于刺耳
-    return np.array([samples, samples]).T  # 转换为二维数组
+    return samples
 
 # 播放音频
 def play_audio(samples, sample_rate):
-    pygame.mixer.pre_init(sample_rate, -16, 2)  # 使用立体声
-    pygame.init()
-    samples_contiguous = np.ascontiguousarray(samples, dtype=np.float32)  # 转换为 C 连续的数组
-    sound = pygame.sndarray.make_sound(samples_contiguous)
-    sound.play()
-    return sound
+    sd.play(samples, samplerate=sample_rate)
+    sd.wait()
 
 # 主程序
 def main():
     while True:
         # 生成并播放白噪声
         noise = generate_white_noise(sample_rate, duration)
-        sound = play_audio(noise, sample_rate)
-        time.sleep(1)  # 等待音频播放完成
-        sound.stop()
-        pygame.quit()
+        play_audio(noise, sample_rate)
         time.sleep(5 * 60)  # 每隔 5 分钟播放一次
 
 if __name__ == "__main__":
