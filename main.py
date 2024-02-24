@@ -13,7 +13,7 @@ def user_interaction():
     print(">当前参数定义如下：")
     print(f">采样率：{sample_rate}")
     print(f">音频时长：{duration}")
-    print(f">总间隔时长：{total_time_sleep}")
+    print(f">总间隔时长（分钟）：{total_time_sleep / 60}\r")
     print(f">音量调节：{sound_volume:.10f}".rstrip('0').rstrip('.'))
 
     try:
@@ -33,7 +33,7 @@ def user_interaction():
 def generate_white_noise(sample_rate, duration):
     num_samples = int(sample_rate * duration)
     samples = np.random.randn(num_samples)
-    samples *= sound_volume  # 调整音量，以避免过于刺耳
+    samples *= sound_volume  # 调整音量
     return samples
 
 # 播放音频
