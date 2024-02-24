@@ -6,8 +6,8 @@ import numpy as np
 pygame.mixer.init()
 
 # 定义采样率和音频时长
-sample_rate = 44100 # 采样率
-duration = 1  # 音频时长
+sample_rate = 10 # 采样率
+duration = 2  # 音频时长
 
 # 生成白噪声音频
 def generate_white_noise(sample_rate, duration):
@@ -23,13 +23,17 @@ def play_audio(samples, sample_rate):
     samples_contiguous = np.ascontiguousarray(samples, dtype=np.float32)  # 转换为 C 连续的数组
     sound = pygame.sndarray.make_sound(samples_contiguous)
     sound.play()
+    return sound
 
 # 主程序
 def main():
     while True:
         # 生成并播放白噪声
         noise = generate_white_noise(sample_rate, duration)
-        play_audio(noise, sample_rate)
+        sound = play_audio(noise, sample_rate)
+        time.sleep(1)  # 等待音频播放完成
+        sound.stop()
+        pygame.quit()
         time.sleep(5 * 60)  # 每隔 5 分钟播放一次
 
 if __name__ == "__main__":
