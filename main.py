@@ -4,7 +4,7 @@ import time
 
 # 定义
 sample_rate = 1000  # 采样率
-duration = 1  # 音频时长
+duration = 2  # 音频时长
 total_time_sleep = 5 * 60  # 总间隔时长
 sound_volume = 0.000001
 
