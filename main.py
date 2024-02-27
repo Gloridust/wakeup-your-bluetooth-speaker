@@ -5,7 +5,7 @@ import time
 # 定义
 sample_rate = 1000  # 采样率
 duration = 2  # 音频时长
-total_time_sleep = 5 * 60  # 总间隔时长
+total_time_sleep = 3 * 60  # 总间隔时长
 sound_volume = 0.000001
 
 # 打包用户交互模块
@@ -17,7 +17,7 @@ def user_interaction():
     print(f">音量调节：{sound_volume:.10f}".rstrip('0').rstrip('.'))
 
     try:
-        user_input = input("\n>输入间隔分钟数，直接按下Enter 则使用默认值[5min]:")
+        user_input = input("\n>输入间隔分钟数，直接按下Enter 则使用默认值[3min]:")
         if user_input:
             new_total_time_sleep = int(user_input) * 60
             print(f">总间隔时长已更改为 {user_input} 分钟")
